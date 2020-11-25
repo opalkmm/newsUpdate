@@ -1,47 +1,72 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <meta charset="UTF-8">
-    <title>Scraping With Mongoose</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@900&display=swap" rel="stylesheet">  
+  <meta charset="UTF-8">
+    <title>Top News Today</title>
     <style>
-      body { background-color: #F2F6D0 }
+      body { background: linear-gradient(0deg, rgba(0,0,0,1) 20%, rgba(255,255,255,1) 100%); }
       #wrapper {
-        width: 960px;
+        width: 100vw;
         margin-left: auto;
         margin-right: auto;
         padding-top: 5%;
       }
+      .jumbotron{
+        font-weight: bold;
+        font-family: 'Big Shoulders Stencil Display', cursive;
+        background-image: url("./bangkok.png");
+        background-size: cover;
+        color: whitesmoke;
+      }
+
+
       #articles {
         display: inline-block;
         overflow: auto;
-        width: 60%;
+        padding: 20px;
+        width: 70%;
         height: 700px;
+        background-color:whitesmoke;
       }
       #notes {
         float: right;
-        width: 30%;
+        width: 20%;
+        color: whitesmoke;
+        font-size: 14px;
       }
       textarea, input {
         display: block;
         width: 100%;
-        background-color: #FCF5C7;
+        background-color:whitesmoke;
+        font-size: 14px;
       }
       input {
         height: 36px;
-        font-size: 24px;
+        font-size: 14px;
       }
       textarea {
         height: 200px;
-        font-size: 18px;
+        font-size: 14px;
       }
     </style>
   </head>
   <body>
-    <div id="wrapper">
-      <h1>Top stories today from Bangkok post</h1>
-      <h2>each should be shown here</h2>
+    <div id="wrapper" class="container">
+      
+<div class="jumbotron jumbotron-fluid font-weight-bold">
+  <div class="container">
+    <h1 class="display-4">Top Stories: Bangkok Post</h1>
+    <p class="lead">click the headline to leave a comment</p>
+  </div>
+</div>
+     
       <div id="articles"></div>
+      <!-- comments go here -->
       <div id="notes"></div>
+      <div></div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="app.js"></script>

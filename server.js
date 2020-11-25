@@ -20,7 +20,7 @@ app.use(express.static("public"));
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 mongoose.connect(MONGODB_URI);
 
-app.get("/topstories", function(req, res) {
+app.get("/", function(req, res) {
   // axios to get the body of the topstory news
   // load to cheerio 
   axios.get("https://www.bangkokpost.com/topstories").then(function(response) {
@@ -29,10 +29,11 @@ app.get("/topstories", function(req, res) {
     //headlines in H3, link a - child of H3
     $("h3").each(function(i, element) {
       var result = {};
-
+      
       result.title = $(this)
         .children("a")
         .text();
+    
       result.link = $(this)
         .children("a")
         .attr("href");
