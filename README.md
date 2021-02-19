@@ -1,6 +1,7 @@
 ## Get news update with web scraper
 
 **What it is:** 
+
 this data extraction application is built to update the latest news headlines and details of Bangkok Post newspaper.
 I combined various framework and libraries, and make sure that the updates is able to deliver a concise and simple, yet responsive.
 The users are able to leave comments on the new results, which will be stored in mongoDB.
