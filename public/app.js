@@ -1,4 +1,17 @@
 // Grab the articles as a json
+console.log("IS THIS FIRING?"); // NO
+// want to call the articles
+$.ajax({
+  method: "GET",
+  url: "/articleSource"
+}).then(function(data) {
+  // console.log(data);
+  // The title of the article
+  $("#articles").append(data);
+  
+  }
+);
+
 $.getJSON("/articles", function(data) {
   // For each one
   for (var i = 0; i < data.length; i++) {
@@ -7,26 +20,26 @@ $.getJSON("/articles", function(data) {
   }
 });
 
-$(document).on("load", function() {
-// just call the / path on load 
-  console.log("IS THIS FIRING?"); // NO
-  // want to call the articles
-  $.ajax({
-    method: "GET",
-    url: "/"
-  }).then(function(data) {
-    console.log(data);
-    // The title of the article
-    $("#articles").append(data);
+// $.(document).on("load", function() {
+// // just call the / path on load 
+//   console.log("IS THIS FIRING?"); // NO
+//   // want to call the articles
+//   $.ajax({
+//     method: "GET",
+//     url: "/"
+//   }).then(function(data) {
+//     console.log(data);
+//     // The title of the article
+//     $("#articles").append(data);
     
-    }
-  );
+//     }
+//   );
 // want to put them in the database and on the screen
 // should get the result from the AJAX above
 // and be able to display it
 
 
-})
+// })
 // Whenever someone clicks a p tag
 $(document).on("click", "h4", function() {
   // Empty the notes from the note section

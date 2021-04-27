@@ -25,7 +25,7 @@ mongoose.connect(MONGODB_URI, {
  });
 
 
-app.get("/", function(req, res) {
+app.get("/articleSource", function(req, res) {
   // axios to get the body of the topstory news
   // load to cheerio 
   axios.get("https://www.bangkokpost.com/topstories").then(function(response) {
@@ -34,7 +34,7 @@ app.get("/", function(req, res) {
     //headlines in H3, link a - child of H3
     $("h3").each(function(i, element) {
       var result = {};
-      
+      console.log(element)
       result.title = $(this)
         .children("a")
         .text();
@@ -46,7 +46,8 @@ app.get("/", function(req, res) {
       // create new article in db from the result
       db.Article.create(result)
         .then(function(dbArticle) {
-          console.log(dbArticle);
+          // console.log(dbArticle);
+          console.log("dbArticleInserted??")
         })
         .catch(function(err) {
           console.log(err);
