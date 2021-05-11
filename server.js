@@ -5,7 +5,6 @@ var axios = require("axios");
 var cheerio = require("cheerio");
 var db = require("./models");
 var PORT = 3000;
-
 // Initialize Express
 var app = express();
 // morgan logger for logging requests
@@ -17,12 +16,17 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
-mongoose.connect(MONGODB_URI, { 
-  useNewUrlParser: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true
- });
+require('dotenv').config();
+var MONGODB_URI = process.env.MONGO_URI;
+try {
+  mongoose.connect(MONGODB_URI, { 
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+   });
+} catch (error) {
+console.log("error: " + error)
+}
+
 
 
 app.get("/articleSource", function(req, res) {
@@ -34,7 +38,6 @@ app.get("/articleSource", function(req, res) {
     //headlines in H3, link a - child of H3
     $("h3").each(function(i, element) {
       var result = {};
-      console.log(element)
       result.title = $(this)
         .children("a")
         .text();
@@ -47,7 +50,6 @@ app.get("/articleSource", function(req, res) {
       db.Article.create(result)
         .then(function(dbArticle) {
           // console.log(dbArticle);
-          console.log("dbArticleInserted??")
         })
         .catch(function(err) {
           console.log(err);

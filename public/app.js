@@ -1,5 +1,5 @@
 // Grab the articles as a json
-console.log("IS THIS FIRING?"); // NO
+// console.log("IS THIS FIRING?"); // NO
 // want to call the articles
 $.ajax({
   method: "GET",
