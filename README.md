@@ -1,4 +1,5 @@
 ## Get news update with web scraper
+**Hosted Live App: https://web-news-update.herokuapp.com/ **
 
 **What it is:** 
 
