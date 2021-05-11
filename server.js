@@ -4,7 +4,7 @@ var mongoose = require("mongoose");
 var axios = require("axios");
 var cheerio = require("cheerio");
 var db = require("./models");
-// var PORT = 15288;
+var PORT = 15288;
 // Initialize Express
 var app = express();
 // morgan logger for logging requests
@@ -101,6 +101,6 @@ app.post("/articles/:id", function(req, res) {
 });
 
 // Start the server
-app.listen(function() {
-  console.log("App running!");
+app.listen(PORT, function() {
+  console.log("App running on port " + PORT + "!");
 });
