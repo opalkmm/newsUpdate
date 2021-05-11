@@ -4,7 +4,9 @@ var mongoose = require("mongoose");
 var axios = require("axios");
 var cheerio = require("cheerio");
 var db = require("./models");
-var PORT = 15288;
+require('dotenv').config();
+
+var PORT = process.env.PORT;
 // Initialize Express
 var app = express();
 // morgan logger for logging requests
@@ -16,7 +18,6 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-require('dotenv').config();
 var MONGODB_URI = process.env.MONGO_URI;
 try {
   mongoose.connect(MONGODB_URI, { 
