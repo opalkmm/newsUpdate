@@ -18,6 +18,9 @@ this is where I define the specific sections on HTML I would like to extract fro
 - the users should be able to save the articles
 - include more news outlets for personal customization
 
+<img width="1226" alt="Screen Shot 2021-05-11 at 2 36 24 PM" src="https://user-images.githubusercontent.com/26353108/117888104-830ce200-b266-11eb-9160-9c76bbc5d1b8.png">
 
+<img width="1232" alt="Screen Shot 2021-05-11 at 2 36 34 PM" src="https://user-images.githubusercontent.com/26353108/117888112-8738ff80-b266-11eb-9583-7bf97cbdd053.png">
+<img width="1234" alt="Screen Shot 2021-05-11 at 2 37 03 PM" src="https://user-images.githubusercontent.com/26353108/117888121-87d19600-b266-11eb-894d-3726433d00e7.png">
 
 
