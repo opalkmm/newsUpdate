@@ -1,15 +1,25 @@
 // Grab the articles as a json
-$.getJSON("/articles", function(data) {
+$.getJSON("/articles", function (data) {
   // For each one
   for (var i = 0; i < data.length; i++) {
     // Display the apropos information on the page
-    $("#articles").append("<h4 data-id='" + data[i]._id + "'>" + data[i].title + "</h4>" + "<br />" + "<p>" + data[i].link + "</p>" + "<hr>");
+    $("#articles").prepend(
+      "<h4 data-id='" +
+        data[i]._id +
+        "'>" +
+        data[i].title +
+        "</h4>" +
+        "<br />" +
+        "<p>" +
+        data[i].link +
+        "</p>" +
+        "<hr>"
+    );
   }
 });
 
-
 // Whenever someone clicks a p tag
-$(document).on("click", "h4", function() {
+$(document).on("click", "h4", function () {
   // Empty the notes from the note section
   $("#notes").empty();
   // Save the id from the p tag
@@ -21,7 +31,7 @@ $(document).on("click", "h4", function() {
     url: "/articles/" + thisId
   })
     // With that done, add the note information to the page
-    .then(function(data) {
+    .then(function (data) {
       console.log(data);
       // The title of the article
       $("#notes").append("<h4>" + data.title + "</h4>");
@@ -30,7 +40,9 @@ $(document).on("click", "h4", function() {
       // A textarea to add a new note body
       $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
       // A button to submit a new note, with the id of the article saved to it
-      $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+      $("#notes").append(
+        "<button data-id='" + data._id + "' id='savenote'>Save Note</button>"
+      );
 
       // If there's a note in the article
       if (data.note) {
@@ -43,7 +55,7 @@ $(document).on("click", "h4", function() {
 });
 
 // When you click the savenote button
-$(document).on("click", "#savenote", function() {
+$(document).on("click", "#savenote", function () {
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");
 
@@ -59,7 +71,7 @@ $(document).on("click", "#savenote", function() {
     }
   })
     // With that done
-    .then(function(data) {
+    .then(function (data) {
       // Log the response
       console.log(data);
       // Empty the notes section
