@@ -19,11 +19,7 @@ app.use(express.static("public"));
 // Connect to the Mongo DB
 var MONGODB_URI =
   process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
-mongoose.connect(MONGODB_URI, {
-  useNewUrlParser: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true
-});
+mongoose.connect(MONGODB_URI);
 
 app.get("/", function (req, res) {
   // axios to get the body of the topstory news
