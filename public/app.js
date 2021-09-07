@@ -1,3 +1,10 @@
+//get the current date on the title
+
+var today = new Date();
+var date =
+  today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+document.getElementById("currentDate").value = date;
+
 // Grab the articles as a json
 $.getJSON("/articles", function (data) {
   // For each one
