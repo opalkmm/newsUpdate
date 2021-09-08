@@ -39,9 +39,13 @@ app.get("/articleSource", function (req, res) {
     $("h3").each(function (i, element) {
       var result = {};
       result.title = $(this).children("a").text();
-
       result.link = $(this).children("a").attr("href");
 
+      // ***** add body/photo
+      result.body = $(this).parent().children("p").text();
+      result.photo = $(this).parent().parent().find("img").attr("src");
+
+      console.log(result);
       // create new article in db from the result
       db.Article.create(result)
         .then(function (dbArticle) {

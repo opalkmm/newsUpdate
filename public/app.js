@@ -36,6 +36,8 @@ var today = new Date();
 var date = getFormattedDate(today);
 document.getElementById("currentDate").value = date;
 
+$.get("/articleSource");
+
 // Grab the articles as a json
 $.getJSON("/articles", function (data) {
   // For each one
