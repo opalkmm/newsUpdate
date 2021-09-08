@@ -1,8 +1,40 @@
 //get the current date on the title
+function getFormattedDate(today) {
+  var week = new Array(
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  );
+  var month = new Array(
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  );
+
+  var day = week[today.getDay()];
+  var month = month[today.getMonth()];
+  var dd = today.getDate();
+  var yyyy = today.getFullYear();
+
+  return day + ", " + month + " " + dd + ", " + yyyy;
+}
 
 var today = new Date();
-var date =
-  today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+var date = getFormattedDate(today);
+
 document.getElementById("currentDate").value = date;
 
 // Grab the articles as a json
