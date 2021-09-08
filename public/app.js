@@ -34,7 +34,6 @@ function getFormattedDate(today) {
 
 var today = new Date();
 var date = getFormattedDate(today);
-
 document.getElementById("currentDate").value = date;
 
 // Grab the articles as a json
