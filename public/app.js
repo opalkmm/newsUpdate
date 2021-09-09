@@ -36,23 +36,65 @@ var today = new Date();
 var date = getFormattedDate(today);
 document.getElementById("currentDate").value = date;
 
-$.get("/articleSource");
+//bangkok post does lazy loading of image urls
+//so the call that we use will have some default images
+//we do this below for better defaults
+//fix photo loading issue on bangkokpost site
+
+/* TO BE FIXED IT's BROKEN AND I NEED TO FIX OTHER THINGS
+getRandomThaiImage = () => {
+  var queryURL =
+    "https://api.giphy.com/v1/gifs/search?q=thailand&api_key=zQ6M6BpGKY0Ezqj9I0RBICnbox4HX22T&limit=30";
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function (response) {
+    var result = response.data;
+    let rando = Math.floor(Math.random() * 30);
+    var imageUrl = result[rando].images.original_still.url;
+
+    return imageUrl;
+  });
+};
+*/
+//$.get("/articleSource");
 
 // Grab the articles as a json
 $.getJSON("/articles", function (data) {
   // For each one
+  /*
   for (var i = 0; i < data.length; i++) {
-    // Display the apropos information on the page
+    if (
+      data[i].photo ==
+      "https://static.bangkokpost.com/newdesign/assets/images/bg/default-pic-w600.jpg"
+    ) {
+      console.log("DEFAULT HERE");
+      data[i].photo = await getRandomThaiImage();
+      console.log(data[i].photo);
+    }
+*/
+  // Display the apropos information on the page
+  for (var i = 0; i < data.length; i++) {
     $("#articles").prepend(
-      "<h4 data-id='" +
+      "<div class='container'><div class='row'>" +
+        "<div class='col-sm-8'><a href='https://www.bangkokpost.com" +
+        data[i].link +
+        "'><h4 data-id='" +
         data[i]._id +
         "'>" +
         data[i].title +
-        "</h4>" +
+        "</h4></a>" +
         "<br />" +
+        // body
         "<p>" +
-        data[i].link +
-        "</p>" +
+        data[i].body +
+        "</p></div>" +
+        // photo
+        "<div class='col-sm-4'><img class='img-fluid' src='" +
+        data[i].photo +
+        "'>" +
+        "</div>" +
+        "</div></div>" +
         "<hr>"
     );
   }
