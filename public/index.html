@@ -3,25 +3,48 @@
   <head>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@900&display=swap" rel="stylesheet">  
-  <meta charset="UTF-8">
-    <title>Top News Today</title>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">  <meta charset="UTF-8">
+   
+  <title>Top Stories from Bangkok Post</title>
     <style>
-      body { background: linear-gradient(0deg, rgba(0,0,0,1) 20%, rgba(255,255,255,1) 100%); }
+    body { background: #F5F5F5; }
       #wrapper {
         width: 100vw;
         margin-left: auto;
         margin-right: auto;
         padding-top: 5%;
       }
-      .jumbotron{
-        font-weight: bold;
-        font-family: 'Big Shoulders Stencil Display', cursive;
-        background-image: url("./bangkok.png");
-        background-size: cover;
-        color: whitesmoke;
+      .btn{
+        margin-top: 2em;
       }
-
+      a { 
+        color: black; 
+      }
+      a:hover{ 
+        color: gray; 
+        text-decoration: none;
+      }
+      #main-title{
+        font-weight: bold;
+        font-size: 5em;
+        font-family: 'Alfa Slab One', cursive;
+        background-color: #F5F5F5;
+        /*background-image: url("./bangkok.png");
+        background-size: cover;*/
+        color: #302f32;
+        text-align: center;
+        
+      }
+    #lead{
+      font-weight: lighter;
+      text-align: center;
+      font-family: 'Alfa Slab One', cursive;
+      color: #302f32;
+      text-align: center;
+    }
+      #currentDate{
+        font-weight: lighter;
+      }
 
       #articles {
         display: inline-block;
@@ -29,12 +52,15 @@
         padding: 20px;
         width: 70%;
         height: 700px;
-        background-color:whitesmoke;
+        font-family: 'roboto';
+        font-weight: thin; 
       }
+      
       #notes {
         float: right;
-        width: 20%;
-        color: whitesmoke;
+        width: 25%;
+        font-family: 'Alfa Slab One', cursive;
+        color: #302f32;
         font-size: 14px;
       }
       textarea, input {
@@ -56,13 +82,14 @@
   <body>
     <div id="wrapper" class="container">
       
-<div class="jumbotron jumbotron-fluid font-weight-bold">
   <div class="container">
-    <h1 class="display-4">Top Stories: Bangkok Post</h1>
-    <p class="lead">click the headline to leave a comment</p>
-  </div>
-</div>
+    <h1 id="main-title">Bangkok Post</h1>
+    <p id="lead">- top stories -</p>
      
+  </div> 
+  <hr>  
+  <input type='text' id="currentDate" style="border: none; font-size: 18px; font-style: italic"> 
+  <hr style="border: 2px solid #302f32" size="2">
       <div id="articles"></div>
       <!-- comments go here -->
       <div id="notes"></div>
