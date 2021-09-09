@@ -76,7 +76,7 @@ $.getJSON("/articles", function (data) {
   // Display the apropos information on the page
   for (var i = 0; i < data.length; i++) {
     $("#articles").prepend(
-      "<div class='container'><div class='row'>" +
+      "<div class='container body'><div class='row'>" +
         "<div class='col-sm-8'><a href='https://www.bangkokpost.com" +
         data[i].link +
         "'><h4 data-id='" +
@@ -100,13 +100,13 @@ $.getJSON("/articles", function (data) {
   }
 });
 
-// Whenever someone clicks a p tag
-$(document).on("click", "h4", function () {
+// Whenever someone clicks the article
+$(document).on("click", ".body", function () {
   // Empty the notes from the note section
   $("#notes").empty();
   // Save the id from the p tag
-  var thisId = $(this).attr("data-id");
-  // console.log(this);
+  var thisId = $(this).find("[data-id]").attr("data-id");
+
   // Now make an ajax call for the Article
   $.ajax({
     method: "GET",
@@ -114,7 +114,7 @@ $(document).on("click", "h4", function () {
   })
     // With that done, add the note information to the page
     .then(function (data) {
-      console.log(data);
+      // console.log(data);
       // The title of the article
       $("#notes").append("<h4>" + data.title + "</h4>");
       // An input to enter a new title
@@ -123,7 +123,9 @@ $(document).on("click", "h4", function () {
       $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
       // A button to submit a new note, with the id of the article saved to it
       $("#notes").append(
-        "<button data-id='" + data._id + "' id='savenote'>Save Note</button>"
+        "<button type='button' class='btn btn-outline-dark' data-id='" +
+          data._id +
+          "' id='savenote'>Save Note</button>"
       );
 
       // If there's a note in the article
@@ -140,7 +142,7 @@ $(document).on("click", "h4", function () {
 $(document).on("click", "#savenote", function () {
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");
-
+  $("#notes").html("Notes saved, click the article to view");
   // Run a POST request to change the note, using what's entered in the inputs
   $.ajax({
     method: "POST",
@@ -157,7 +159,9 @@ $(document).on("click", "#savenote", function () {
       // Log the response
       console.log(data);
       // Empty the notes section
-      $("#notes").empty();
+      setTimeout(() => {
+        $("#notes").empty();
+      }, 5000);
     });
 
   // Also, remove the values entered in the input and textarea for note entry
