@@ -57,7 +57,7 @@ getRandomThaiImage = () => {
   });
 };
 */
-//$.get("/articleSource");
+$.get("/articleSource");
 
 // Grab the articles as a json
 $.getJSON("/articles", function (data) {
