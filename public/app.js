@@ -142,6 +142,10 @@ $(document).on("click", ".body", function () {
 $(document).on("click", "#savenote", function () {
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");
+  var notesSection = $('#notes');
+  var title = notesSection.children('#titleinput')[0].value;
+  var body = notesSection.children('#bodyinput')[0].value;
+
   $("#notes").html("Notes saved, click the article to view");
   // Run a POST request to change the note, using what's entered in the inputs
   $.ajax({
@@ -149,15 +153,16 @@ $(document).on("click", "#savenote", function () {
     url: "/articles/" + thisId,
     data: {
       // Value taken from title input
-      title: $("#titleinput").val(),
+      title: title,
       // Value taken from note textarea
-      body: $("#bodyinput").val()
+      body: body
     }
   })
+
     // With that done
     .then(function (data) {
       // Log the response
-      console.log(data);
+      // console.log(data);
       // Empty the notes section
       setTimeout(() => {
         $("#notes").empty();
