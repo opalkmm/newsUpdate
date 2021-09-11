@@ -161,9 +161,10 @@ $(document).on("click", "#savenote", function () {
 
       // console.log(data);
       // Empty the notes section
-      setTimeout(() => {
-        $("#notes").empty();
-      }, 5000);
+    
+//       setTimeout(() => {
+//         $("#notes").empty();
+//       }, 5000);
     });
 
   // Also, remove the values entered in the input and textarea for note entry
