@@ -44,21 +44,23 @@ app.get("/articleSource", function (req, res) {
       // ***** add body/photo
       result.body = $(this).parent().children("p").text();
       result.photo = $(this).parent().parent().find("img").attr("src");
-
       // console.log(result);
       // create new article in db from the result
-      db.Article.create(result)
-        .then(function (dbArticle) {
-          // console.log(dbArticle);
-        })
-        .catch(function (err) {
-          console.log(err);
-        });
+      db.Article.findOne({title: result.title}).then((res) => {
+        if (res === null){
+          db.Article.create(result)
+          .then(function (dbArticle) {
+            // console.log(dbArticle);
+          })
+          .catch(function (err) {
+            console.log(err);
+          });
+        }
+      })   
     });
     res.send("successful fetch");
   });
 });
-
 //get the fetched articles from MongoDB, using mongoose
 app.get("/articles", function (req, res) {
   db.Article.find({})
