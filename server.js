@@ -56,7 +56,13 @@ app.get("/articleSource", function (req, res) {
             console.log(err);
           });
         }
+<<<<<<< HEAD
       })   
+=======
+      })
+      // db.Article.deleteMany({title:"Opposition mulls legal action in wake of censure debate"})
+   
+>>>>>>> dadd1ee (Fetch or fill images for all articles)
     });
     res.send("successful fetch");
   });
@@ -89,6 +95,7 @@ app.get("/articles/:id", function (req, res) {
 // Route for saving/updating an Article's associated Note
 app.post("/articles/:id", function (req, res) {
   // Create a new note and pass the req.body to the entry
+  
   db.Note.create(req.body)
     .then(function (dbNote) {
       //return the updated note
