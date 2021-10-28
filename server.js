@@ -40,12 +40,29 @@ app.get("/articleSource", function (req, res) {
       var result = {};
       result.title = $(this).children("a").text();
       result.link = $(this).children("a").attr("href");
+      let newPhotoLink;
 
       // ***** add body/photo
       result.body = $(this).parent().children("p").text();
       result.photo = $(this).parent().parent().find("img").attr("src");
-      // console.log(result);
+      if (result.photo === undefined || result.photo === "https://static.bangkokpost.com/newdesign/assets/images/bg/default-pic-w600.jpg"){
+        let articleLink = "https://www.bangkokpost.com" + result.link;
+        axios.get(articleLink).then(function (response) {
+          var $ = cheerio.load(response.data);
+          newPhotoLink = $("figure");
+          fullPhoto = newPhotoLink.children("img")
+          fullPhotoURL = fullPhoto.attr("src");
+          console.log("this is " + i + " photo: " + fullPhotoURL)
+          newPhotoLink =  fullPhotoURL;
+          result.link = fullPhotoURL;
+          // NOT WORKING
+          // also findAndModify not working
+          db.Article.findOneAndUpdate({title: result.title}, result)
+        })
+      }
+      // console.error(result);
       // create new article in db from the result
+
       db.Article.findOne({title: result.title}).then((res) => {
         if (res === null){
           db.Article.create(result)
