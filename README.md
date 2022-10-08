@@ -16,7 +16,6 @@ this is where I define the specific sections on HTML I would like to extract fro
 - HTML, CSS, with Bootstrap library to design the general look of the page.
 
 **future implementation**
-- the users should be able to save the articles
 - include more news outlets for personal customization
 
 <img width="1226" alt="Screen Shot 2021-05-11 at 2 36 24 PM" src="https://user-images.githubusercontent.com/26353108/194686108-ec19af7c-e369-4d1f-bec0-818253b42ccd.png">
